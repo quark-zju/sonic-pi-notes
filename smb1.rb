@@ -1,5 +1,3 @@
-use_synth :square
-
 @bpm = 200
 use_bpm @bpm
 
