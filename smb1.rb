@@ -1,5 +1,4 @@
 @bpm = 200
-use_bpm @bpm
 
 main_parts = [
   %w[
@@ -62,7 +61,7 @@ lower_parts = [
   ],
 ]
 
-define :play_notes do |offset, notes|
+def play_notes(offset, notes)
   notes.each_slice(4) do |slice|
     bpm, slice = if slice[0] == '!'
       [@bpm * 3 / 4, slice[1..-1]]
@@ -79,32 +78,22 @@ define :play_notes do |offset, notes|
   end
 end
 
-in_thread do
-  with_synth :dpulse do
-    play_notes 12, main_parts[2][48..-1]
-    play_notes 12, [
-      *main_parts[0],
-      *main_parts[1] * 2,
-      *main_parts[2],
-      *main_parts[0],
-      *main_parts[3] * 2,
-      *main_parts[2],
-      *main_parts[3],
-    ].cycle
-  end
-end
-
-in_thread do
-  with_synth :dtri do
-    play_notes -12, lower_parts[2][48..-1]
-    play_notes -12, [
-      *lower_parts[0],
-      *lower_parts[1] * 2,
-      *lower_parts[2],
-      *lower_parts[0],
-      *lower_parts[3] * 2,
-      *lower_parts[2],
-      *lower_parts[3],
-    ].cycle
+[
+  [:dpulse, main_parts, 12],
+  [:dtri, lower_parts, -12],
+].each do |synth_name, parts, offest|
+  in_thread do
+    with_synth synth_name do
+      play_notes offest, parts[2][48..-1]
+      play_notes offest, [
+        *parts[0],
+        *parts[1] * 2,
+        *parts[2],
+        *parts[0],
+        *parts[3] * 2,
+        *parts[2],
+        *parts[3],
+      ].cycle
+    end
   end
 end
