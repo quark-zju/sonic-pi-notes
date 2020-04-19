@@ -26,7 +26,7 @@ main_parts = [
     ! B3 A A  ! A G F    E C r A3    G3 r r r
     
     E C r G3  r r Gs3 r  A3 F r F    A3 r r r
-    A3 F r F  ! F E D    C r r r     r r r r
+    B3 F r F  ! F E D    C r r r     r r r r
   ]
 ]
 
