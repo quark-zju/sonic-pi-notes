@@ -54,7 +54,7 @@ lower_parts = [
   
   %w[
     C4 r r Fs   G r C5 r    F r F r   C5 C5 F r
-    D r r F     G r A r     G r G r   C5 C5 G r
+    D r r F     G r B r     G r G r   C5 C5 G r
     
     C4 r r Fs   G r C5 r    F r F r   C5 C5 F r
     G r r G     ! G A B     C5 r G r  C r r r
