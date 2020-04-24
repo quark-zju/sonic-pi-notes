@@ -71,7 +71,7 @@ def play_notes(offset, notes)
     with_bpm bpm do
       slice.each do |n|
         i = note(n.to_sym)
-        play i + offset, release: 0, attack: 0, sustain: 0.5
+        play i + offset, release: 0.3, attack: 0, sustain: 0.5
         sleep 0.5
       end
     end

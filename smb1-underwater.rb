@@ -36,14 +36,14 @@ def play_notes(notes, offset: 0)
     time = 1.0 * mul / div
     s.split('+').each do |n|
       i = note(n.to_sym)
-      play i + offset, release: 0, attack: 0, sustain: time
+      play i + offset, release: time / 2, attack: 0, sustain: time / 2
     end
     sleep time
   end
 end
 
 in_thread do
-  use_synth :pulse
+  use_synth :square
   play_notes main_parts.split.cycle
 end
 
